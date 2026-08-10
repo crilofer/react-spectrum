@@ -1,5 +1,6 @@
 .DS_Store
 .cache
+.cursor/
 .idea
 .package-lock.json
 .parcel-cache

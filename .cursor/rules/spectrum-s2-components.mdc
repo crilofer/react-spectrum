@@ -1,0 +1,38 @@
+---
+description: Conventions for @react-spectrum/s2 components
+globs: packages/@react-spectrum/s2/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# Spectrum 2 (`@react-spectrum/s2`)
+
+## Building components
+
+- Prefer primitives from `react-aria-components` (e.g. `Button as RACButton`) over reimplementing behavior.
+- Style with the `style` macro — never ad-hoc hex/rgb or arbitrary CSS modules:
+
+```tsx
+import {style} from '../style' with {type: 'macro'};
+// or from style-utils helpers colocated in the package
+```
+
+- Keep visual variants as typed props (`variant`, `fillStyle`, etc.), not free-form class strings.
+- User-facing strings: `intlMessages from '../intl/*.json'` + `useLocalizedStringFormatter`.
+
+## Patterns to preserve
+
+- Use Spectrum context helpers already in the package (`useSpectrumContextProps`, slot contexts).
+- Use `onPress` / RAC press APIs — do not add `onClick` to public Spectrum APIs.
+- Colocate stories under `stories/` and tests under `test/`.
+
+## Consumer docs
+
+For app-facing S2 usage and the style macro token set, see `rules/react-spectrum-s2.mdc` and `rules/style-macro.mdc`.
+
+```tsx
+// ❌ BAD
+<button className="my-btn" onClick={...} style={{color: '#ff0000'}} />
+
+// ✅ GOOD
+<RACButton className={style({...})} onPress={...}>...</RACButton>
+```

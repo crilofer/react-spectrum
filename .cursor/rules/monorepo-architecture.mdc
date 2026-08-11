@@ -1,0 +1,35 @@
+---
+description: React Spectrum monorepo layered architecture and product lines
+alwaysApply: true
+---
+
+# Monorepo architecture
+
+This repo is a Yarn workspaces monorepo. Components are split into layers — keep concerns in the right package.
+
+## Layers (bottom → top)
+
+1. **`@react-types`** — shared public prop types
+2. **`@react-stately` / `react-stately`** — platform-agnostic state hooks (controlled + uncontrolled)
+3. **`@react-aria` / `react-aria` / `react-aria-components`** — behavior, ARIA, keyboard, i18n (no Spectrum styling)
+4. **Themed UI** — Spectrum markup/styles only
+   - **v3**: `@adobe/react-spectrum`, `@react-spectrum/*`
+   - **S2**: `@react-spectrum/s2`
+
+```
+❌ BAD: Spectrum colors/tokens inside @react-aria or @react-stately
+❌ BAD: Duplicating state logic in a Spectrum component instead of a stately hook
+✅ GOOD: Spectrum component calls aria/RAC hooks and only owns DOM structure + styling
+```
+
+## Product lines
+
+- Do not mix v3 patterns (Provider, Spectrum CSS modules) with S2 patterns (`style` macro, RAC) unless the change intentionally spans both.
+- For *consuming* Spectrum in app code, prefer the published rules in `rules/` (`react-spectrum-s2.mdc`, `react-spectrum-v3.mdc`, `style-macro.mdc`).
+
+## Contribution defaults
+
+- Package manager: **Yarn** only.
+- Validate with `yarn lint` and relevant `yarn test` / Storybook.
+- Behavior changes need unit tests + Storybook stories; public API changes need types/docs.
+- Large features: open an RFC in `rfcs/` first.

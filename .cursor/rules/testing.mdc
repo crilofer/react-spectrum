@@ -1,0 +1,45 @@
+---
+description: Unit test conventions for React Spectrum packages
+globs: "**/*.{test,spec}.{js,jsx,ts,tsx}"
+alwaysApply: false
+---
+
+# Testing
+
+## Setup
+
+- Import from `@react-spectrum/test-utils-internal` (`render`, `act`, `pointerMap`, etc.).
+- Prefer `@testing-library/user-event` with `pointerMap`:
+
+```js
+let user = userEvent.setup({delay: null, pointerMap});
+```
+
+- For overlays/animations, use fake timers and flush them after interactions:
+
+```js
+beforeAll(() => jest.useFakeTimers());
+afterEach(() => {
+  jest.clearAllMocks();
+  act(() => jest.runAllTimers());
+});
+```
+
+## Assertions
+
+- Query by role and accessible name (`getByRole('alertdialog')`, `getByRole('button', {name: ...})`).
+- Avoid CSS selectors / class names / test IDs unless there is no accessible alternative.
+- Cover: (1) props that change rendered UI, (2) events/callbacks that fire on interaction.
+
+## Wrappers
+
+- **v3**: wrap with `Provider` + theme when the component needs it.
+- **S2**: render the component tree as consumers would (often via `DialogTrigger` / real parents).
+
+```js
+// ❌ BAD
+container.querySelector('.spectrum-Button')
+
+// ✅ GOOD
+getByRole('button', {name: 'confirm'})
+```

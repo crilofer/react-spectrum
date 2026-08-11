@@ -7,10 +7,16 @@ import * as packageJSON from '../../../packages/@adobe/react-spectrum/package.js
 addons.register('theme-switcher', api => {
   let query = window.matchMedia('(prefers-color-scheme: dark)');
   let update = () => {
-    let theme = query.matches ? themes.dark : themes.normal;
-    theme.brandTitle = `React Spectrum<br />v${packageJSON.version}`;
-    theme.brandUrl = 'https://react-spectrum.corp.adobe.com';
-    api.setOptions({theme});
+    let base = query.matches ? themes.dark : themes.normal;
+    api.setOptions({
+      theme: {
+        ...base,
+        brandTitle: `React Spectrum<br />v${packageJSON.version}`,
+        brandUrl: 'https://react-spectrum.corp.adobe.com',
+        // Used by Storybook for sidebar "component" icons (and other accents)
+        colorSecondary: '#1EA7FD'
+      }
+    });
     addons.getChannel().emit(FORCE_RE_RENDER);
   };
 

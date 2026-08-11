@@ -2,6 +2,7 @@ import {addons} from 'storybook/preview-api';
 import {configureActions} from 'storybook/actions';
 import {DARK_MODE_EVENT_NAME} from '@vueless/storybook-dark-mode';
 import React from 'react';
+import {themes} from 'storybook/theming';
 import {withProviderSwitcher} from './custom-addons/provider';
 import {withScrollingSwitcher} from './custom-addons/scrolling';
 import {withStrictModeSwitcher} from './custom-addons/strictmode';
@@ -60,12 +61,16 @@ export const parameters = {
   },
   darkMode: {
     light: {
+      ...themes.light,
       brandTitle: 'React Spectrum',
-      brandImage: new URL('raw:logo.svg', import.meta.url).toString()
+      brandImage: new URL('raw:logo.svg', import.meta.url).toString(),
+      colorSecondary: '#22c55e'
     },
     dark: {
+      ...themes.dark,
       brandTitle: 'React Spectrum',
-      brandImage: new URL('raw:logo-dark.svg', import.meta.url).toString()
+      brandImage: new URL('raw:logo-dark.svg', import.meta.url).toString(),
+      colorSecondary: '#22c55e'
     }
   }
 };

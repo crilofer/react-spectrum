@@ -1,0 +1,36 @@
+---
+description: Conventions for React Aria and React Stately hooks
+globs: packages/@react-aria/**/*.{ts,tsx},packages/@react-stately/**/*.{ts,tsx},packages/react-aria/**/*.{ts,tsx},packages/react-stately/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# Aria / Stately hooks
+
+## Stately (`use*State`)
+
+- Manage component state only — no DOM, events, or ARIA attributes.
+- Support controlled and uncontrolled modes via props like `isSelected` / `defaultSelected` + `onChange`.
+- Return state values and setters/actions with stable, documented names.
+
+## Aria (`use*`)
+
+- Accept props + refs (and often state from a stately hook).
+- Return **named props objects** for specific elements (`buttonProps`, `dialogProps`, `titleProps`), not a single grab-bag.
+- Implement keyboard interactions, focus management, and ARIA — align with [ARIA APG](https://www.w3.org/WAI/ARIA/apg/).
+- Use shared utilities (`filterDOMProps`, `mergeProps`, `useId` / `useSlotId`, `focusSafely`).
+
+```ts
+// ✅ GOOD — named props for each element role
+export interface DialogAria {
+  dialogProps: DOMAttributes;
+  titleProps: DOMAttributes;
+  contentProps: DOMAttributes;
+}
+```
+
+```ts
+// ❌ BAD — Spectrum styling or CSS class names in an aria/stately hook
+dialogProps: { className: 'spectrum-Dialog' }
+```
+
+Keep hooks theme- and design-system agnostic so RAC and multiple Spectrum lines can reuse them.

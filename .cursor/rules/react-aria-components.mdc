@@ -1,0 +1,20 @@
+---
+description: Conventions for react-aria-components package
+globs: packages/react-aria-components/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# React Aria Components (RAC)
+
+- Build accessible, unstyled components via composition (slots + React context), not deep one-off prop trees.
+- Reuse `react-aria` / `react-stately` hooks; RAC should be the DOM composition layer, not a second behavior implementation.
+- Preserve render-prop / context patterns used by neighboring components (`*Context`, slot providers).
+- Keep styling concerns out — consumers (including S2) supply classes/styles.
+- Public props and contexts are part of the semver surface; update types and docs with API changes.
+
+```tsx
+// ✅ GOOD — compose hooks + slots
+// use existing Button/Dialog patterns in this package as the template
+
+// ❌ BAD — hard-coding Spectrum tokens or duplicating useDialog logic inline
+```

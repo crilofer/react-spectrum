@@ -1,0 +1,33 @@
+---
+description: Storybook story conventions for visual states and Chromatic
+globs: "**/stories/**/*.{ts,tsx,js,jsx}"
+alwaysApply: false
+---
+
+# Storybook stories
+
+- Add a story for each meaningful visual state driven by props (Chromatic relies on this).
+- Prefer CSF3 (`Meta` / `StoryObj`) and keep `args` focused on the state under test.
+- Compose with real parent triggers when needed (`DialogTrigger`, `Provider` for v3).
+
+```tsx
+const meta: Meta<typeof AlertDialog> = {
+  component: AlertDialog,
+  parameters: {layout: 'centered'},
+  title: 'AlertDialog'
+};
+export default meta;
+
+export const Example: StoryObj<typeof AlertDialog> = {
+  render: (args) => (
+    <DialogTrigger>
+      <ActionButton>Open</ActionButton>
+      <AlertDialog {...args}>Body</AlertDialog>
+    </DialogTrigger>
+  ),
+  args: {title: '...', primaryActionLabel: 'Confirm'}
+};
+```
+
+- **v3**: `yarn start` → http://localhost:9003 (`.storybook`)
+- **S2**: `yarn start:s2` → http://localhost:6006 (`.storybook-s2`)

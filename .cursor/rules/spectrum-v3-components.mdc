@@ -1,0 +1,34 @@
+---
+description: Conventions for React Spectrum v3 components
+globs: packages/@adobe/react-spectrum/**/*.{ts,tsx,js,jsx},packages/@react-spectrum/!(s2|s2-*)/**/*.{ts,tsx,js,jsx}
+alwaysApply: false
+---
+
+# Spectrum v3 (`@adobe/react-spectrum` / `@react-spectrum/*`)
+
+Applies to v3 packages only (not `@react-spectrum/s2` or `s2-*`).
+
+## Building components
+
+- Compose aria/stately (or shared `react-aria`) hooks; own DOM structure + Spectrum CSS only.
+- Style via Spectrum CSS (`import styles from '@adobe/spectrum-css-temp/...'`) and style props (`useStyleProps`), not the S2 `style` macro.
+- Public interaction handlers use **`onPress`**, not `onClick`.
+- Localize UI chrome with `intlMessages` + `useLocalizedStringFormatter`.
+- Put shared prop types in `@react-types` when they are part of the public API; document props with JSDoc.
+
+```tsx
+// ❌ BAD
+<Button onClick={handler} className="custom">Save</Button>
+
+// ✅ GOOD
+<Button variant="accent" onPress={handler}>Save</Button>
+```
+
+## Tests & stories
+
+- Tests often need `<Provider theme={theme}>...</Provider>`.
+- Stories live with the package; run v3 Storybook via `yarn start` (port 9003).
+
+## Consumer docs
+
+For app-facing v3 usage, see `rules/react-spectrum-v3.mdc`. For migrations to S2, see `rules/react-spectrum-v3-to-s2-migration.mdc`.

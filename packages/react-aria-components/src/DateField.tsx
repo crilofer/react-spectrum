@@ -22,11 +22,11 @@ import {
   SlotProps,
   StyleRenderProps,
   useContextProps,
-  useFocusForwardingRef,
   useRenderProps,
   useSlot,
   useSlottedContext
 } from './utils';
+import {useFocusForwardingRef} from './useFocusForwardingRef';
 import {createCalendar} from '@internationalized/date';
 import {
   DateFieldState,

@@ -23,11 +23,11 @@ import {
   RenderProps,
   SlotProps,
   useContextProps,
-  useFocusForwardingRef,
   useRenderProps,
   useSlot,
   useSlottedContext
 } from './utils';
+import {useFocusForwardingRef} from './useFocusForwardingRef';
 import {DateFieldContext} from './DateField';
 import {
   DatePickerState,

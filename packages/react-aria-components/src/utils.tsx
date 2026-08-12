@@ -11,7 +11,6 @@
  */
 
 import {AriaLabelingProps, RefObject, DOMProps as SharedDOMProps} from '@react-types/shared';
-import {getFocusableTreeWalker} from 'react-aria/private/focus/FocusScope';
 import {mergeProps} from 'react-aria/mergeProps';
 import {mergeRefs} from 'react-aria/mergeRefs';
 import React, {
@@ -23,7 +22,6 @@ import React, {
   ForwardedRef,
   forwardRef,
   JSX,
-  MutableRefObject,
   ReactElement,
   ReactNode,
   RefCallback,
@@ -35,56 +33,6 @@ import React, {
 } from 'react';
 import {useLayoutEffect} from 'react-aria/private/utils/useLayoutEffect';
 import {useObjectRef} from 'react-aria/useObjectRef';
-
-const focusForwardingPatched = new WeakSet<HTMLElement>();
-
-/**
- * Overrides an element's focus() so that calling it focuses the first tabbable
- * descendant instead. This keeps the forwarded ref on the outer element (for styling
- * and layout) while making form libraries that call `ref.focus()` work with compound
- * controls like DateInput.
- */
-function patchFocusToFirstTabbable(element: HTMLElement): void {
-  if (focusForwardingPatched.has(element)) {
-    return;
-  }
-  focusForwardingPatched.add(element);
-
-  let originalFocus = element.focus.bind(element);
-  element.focus = (options?: FocusOptions) => {
-    let walker = getFocusableTreeWalker(element, {tabbable: true});
-    let first = walker.nextNode() as HTMLElement | null;
-    if (first) {
-      first.focus(options);
-    } else {
-      originalFocus(options);
-    }
-  };
-}
-
-/**
- * Returns a ref that forwards focus() calls on the mounted element to its first
- * tabbable descendant. The ref still points at the outer element.
- */
-export function useFocusForwardingRef<E extends HTMLElement>(
-  ref: ForwardedRef<E> | undefined
-): MutableRefObject<E | null> {
-  let objRef = useObjectRef(ref);
-  return useMemo(
-    () => ({
-      get current() {
-        return objRef.current;
-      },
-      set current(value: E | null) {
-        if (value) {
-          patchFocusToFirstTabbable(value);
-        }
-        objRef.current = value;
-      }
-    }),
-    [objRef]
-  );
-}
 
 export const DEFAULT_SLOT = Symbol('default');
 

@@ -22,6 +22,7 @@ import {
   SlotProps,
   StyleRenderProps,
   useContextProps,
+  useFocusForwardingRef,
   useRenderProps,
   useSlot,
   useSlottedContext
@@ -144,6 +145,7 @@ export const DateField = /*#__PURE__*/ (forwardRef as forwardRefType)(function D
   T extends DateValue
 >(props: DateFieldProps<T>, ref: ForwardedRef<HTMLDivElement>) {
   [props, ref] = useContextProps(props, ref, DateFieldContext);
+  ref = useFocusForwardingRef(ref);
   let {validationBehavior: formValidationBehavior} = useSlottedContext(FormContext) || {};
   let validationBehavior = props.validationBehavior ?? formValidationBehavior ?? 'native';
   let {locale} = useLocale();
@@ -233,6 +235,7 @@ export const TimeField = /*#__PURE__*/ (forwardRef as forwardRefType)(function T
   T extends TimeValue
 >(props: TimeFieldProps<T>, ref: ForwardedRef<HTMLDivElement>) {
   [props, ref] = useContextProps(props, ref, TimeFieldContext);
+  ref = useFocusForwardingRef(ref);
   let {validationBehavior: formValidationBehavior} = useSlottedContext(FormContext) || {};
   let validationBehavior = props.validationBehavior ?? formValidationBehavior ?? 'native';
   let {locale} = useLocale();
@@ -409,6 +412,8 @@ const DateInputInner = forwardRef((props: DateInputProps, ref: ForwardedRef<HTML
   let dateFieldState = useContext(DateFieldStateContext);
   let timeFieldState = useContext(TimeFieldStateContext);
   let state = dateFieldState ?? timeFieldState!;
+  // Form libraries call ref.focus() on validation errors; forward to the first segment.
+  ref = useFocusForwardingRef(ref);
 
   return (
     <>

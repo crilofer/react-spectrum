@@ -262,4 +262,23 @@ describe('TimeField', () => {
 
     expect(getDescription()).not.toContain('Constraints not satisfied');
   });
+
+  it('should forward focus from TimeField ref to the first segment', () => {
+    let ref = React.createRef();
+    let {getByRole} = render(
+      <TimeField ref={ref}>
+        <Label>Time</Label>
+        <DateInput>{segment => <DateSegment segment={segment} />}</DateInput>
+      </TimeField>
+    );
+
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toHaveClass('react-aria-TimeField');
+
+    let segments = within(getByRole('group')).getAllByRole('spinbutton');
+    act(() => {
+      ref.current.focus();
+    });
+    expect(document.activeElement).toBe(segments[0]);
+  });
 });

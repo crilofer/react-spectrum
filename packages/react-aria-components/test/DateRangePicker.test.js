@@ -448,4 +448,50 @@ describe('DateRangePicker', () => {
     let text = popover.querySelector('.react-aria-Text');
     expect(text).not.toHaveAttribute('id');
   });
+
+  it('should forward focus from DateRangePicker ref to the first segment', () => {
+    let ref = React.createRef();
+    let {getAllByRole} = render(<TestDateRangePicker ref={ref} />);
+
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toHaveClass('react-aria-DateRangePicker');
+
+    let segments = getAllByRole('spinbutton');
+    act(() => {
+      ref.current.focus();
+    });
+    expect(document.activeElement).toBe(segments[0]);
+  });
+
+  it('should forward focus from DateInput ref to the first segment', () => {
+    let startRef = React.createRef();
+    let endRef = React.createRef();
+    let {getAllByRole} = render(
+      <DateRangePicker>
+        <Label>Trip dates</Label>
+        <Group>
+          <DateInput slot="start" ref={startRef}>
+            {segment => <DateSegment segment={segment} />}
+          </DateInput>
+          <span aria-hidden="true">–</span>
+          <DateInput slot="end" ref={endRef}>
+            {segment => <DateSegment segment={segment} />}
+          </DateInput>
+          <Button>▼</Button>
+        </Group>
+      </DateRangePicker>
+    );
+
+    let segments = getAllByRole('spinbutton');
+    // Start and end inputs each have 3 spinbuttons (month/day/year).
+    act(() => {
+      startRef.current.focus();
+    });
+    expect(document.activeElement).toBe(segments[0]);
+
+    act(() => {
+      endRef.current.focus();
+    });
+    expect(document.activeElement).toBe(segments[3]);
+  });
 });

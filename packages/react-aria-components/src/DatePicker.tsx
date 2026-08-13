@@ -27,6 +27,7 @@ import {
   useSlot,
   useSlottedContext
 } from './utils';
+import {useFocusForwardingRef} from './useFocusForwardingRef';
 import {DateFieldContext} from './DateField';
 import {
   DatePickerState,
@@ -165,6 +166,8 @@ export const DatePicker = /*#__PURE__*/ (forwardRef as forwardRefType)(function 
   T extends DateValue
 >(props: DatePickerProps<T>, ref: ForwardedRef<HTMLDivElement>) {
   [props, ref] = useContextProps(props, ref, DatePickerContext);
+  // Form libraries call ref.focus() on validation errors; forward to the first segment.
+  ref = useFocusForwardingRef(ref);
   let {validationBehavior: formValidationBehavior} = useSlottedContext(FormContext) || {};
   let validationBehavior = props.validationBehavior ?? formValidationBehavior ?? 'native';
   let state = useDatePickerState({
@@ -276,6 +279,8 @@ export const DateRangePicker = /*#__PURE__*/ (forwardRef as forwardRefType)(
     ref: ForwardedRef<HTMLDivElement>
   ) {
     [props, ref] = useContextProps(props, ref, DateRangePickerContext);
+    // Form libraries call ref.focus() on validation errors; forward to the first segment.
+    ref = useFocusForwardingRef(ref);
     let {validationBehavior: formValidationBehavior} = useSlottedContext(FormContext) || {};
     let validationBehavior = props.validationBehavior ?? formValidationBehavior ?? 'native';
     let state = useDateRangePickerState({

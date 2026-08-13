@@ -391,4 +391,40 @@ describe('DatePicker', () => {
     let input = group.querySelector('.react-aria-DateInput');
     expect(input).toHaveTextContent('5/30/2000');
   });
+
+  it('should forward focus from DatePicker ref to the first segment', () => {
+    let ref = React.createRef();
+    let {getByRole} = render(<TestDatePicker ref={ref} />);
+
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toHaveClass('react-aria-DatePicker');
+
+    let segments = within(getByRole('group')).getAllByRole('spinbutton');
+    act(() => {
+      ref.current.focus();
+    });
+    expect(document.activeElement).toBe(segments[0]);
+  });
+
+  it('should forward focus from DateInput ref to the first segment', () => {
+    let ref = React.createRef();
+    let {getByRole} = render(
+      <DatePicker>
+        <Label>Birth date</Label>
+        <Group>
+          <DateInput ref={ref}>{segment => <DateSegment segment={segment} />}</DateInput>
+          <Button>▼</Button>
+        </Group>
+      </DatePicker>
+    );
+
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toHaveClass('react-aria-DateInput');
+
+    let segments = within(getByRole('group')).getAllByRole('spinbutton');
+    act(() => {
+      ref.current.focus();
+    });
+    expect(document.activeElement).toBe(segments[0]);
+  });
 });

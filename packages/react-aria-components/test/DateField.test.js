@@ -622,4 +622,42 @@ describe('DateField', () => {
     expect(collapse).not.toHaveBeenCalled();
     jest.restoreAllMocks();
   });
+
+  it('should forward focus from DateField ref to the first segment', () => {
+    let ref = React.createRef();
+    let {getByRole} = render(
+      <DateField ref={ref}>
+        <Label>Birth date</Label>
+        <DateInput>{segment => <DateSegment segment={segment} />}</DateInput>
+      </DateField>
+    );
+
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toHaveClass('react-aria-DateField');
+
+    let segments = within(getByRole('group')).getAllByRole('spinbutton');
+    act(() => {
+      ref.current.focus();
+    });
+    expect(document.activeElement).toBe(segments[0]);
+  });
+
+  it('should forward focus from DateInput ref to the first segment', () => {
+    let ref = React.createRef();
+    let {getByRole} = render(
+      <DateField>
+        <Label>Birth date</Label>
+        <DateInput ref={ref}>{segment => <DateSegment segment={segment} />}</DateInput>
+      </DateField>
+    );
+
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toHaveClass('react-aria-DateInput');
+
+    let segments = within(getByRole('group')).getAllByRole('spinbutton');
+    act(() => {
+      ref.current.focus();
+    });
+    expect(document.activeElement).toBe(segments[0]);
+  });
 });

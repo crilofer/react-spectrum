@@ -25,7 +25,7 @@ import {Label} from '../src/Label';
 import {Meta, StoryFn} from '@storybook/react';
 import {parseAbsoluteToLocal} from '@internationalized/date';
 import {Popover} from '../src/Popover';
-import React from 'react';
+import React, {useRef, useState} from 'react';
 import styles from '../example/index.css';
 import {TextField} from '../src/TextField';
 import './styles.css';
@@ -356,3 +356,65 @@ export const DatePickerAutofill = props => (
     <Button type="submit">Submit</Button>
   </Form>
 );
+
+/**
+ * Demo for FE-6: form libraries call ref.focus() on validation errors.
+ * Clicking the button should focus the first date segment.
+ */
+export const FocusForwardingDemo = () => {
+  let datePickerRef = useRef<HTMLDivElement>(null);
+  let dateInputRef = useRef<HTMLDivElement>(null);
+  let [active, setActive] = useState<string>('none');
+
+  return (
+    <div style={{fontFamily: 'system-ui, sans-serif', padding: 24, maxWidth: 520}}>
+      <h2 style={{marginTop: 0}}>DatePicker focus forwarding (FE-6)</h2>
+      <p style={{color: '#444', lineHeight: 1.4}}>
+        Simulates react-hook-form calling <code>ref.focus()</code> after a validation error. The first
+        date segment should receive focus.
+      </p>
+
+      <DatePicker ref={datePickerRef} data-testid="focus-demo-datepicker">
+        <Label style={{display: 'block', marginBottom: 8}}>Birth date</Label>
+        <Group style={{display: 'inline-flex', border: '1px solid #888', borderRadius: 6, padding: 4}}>
+          <DateInput ref={dateInputRef} className={styles.field}>
+            {segment => (
+              <DateSegment
+                segment={segment}
+                className={clsx(styles.segment, {[styles.placeholder]: segment.isPlaceholder})}
+              />
+            )}
+          </DateInput>
+          <Button>🗓</Button>
+        </Group>
+      </DatePicker>
+
+      <div style={{display: 'flex', gap: 12, marginTop: 20}}>
+        <button
+          type="button"
+          data-testid="focus-datepicker-ref"
+          style={{padding: '8px 12px', cursor: 'pointer'}}
+          onClick={() => {
+            datePickerRef.current?.focus();
+            setActive(document.activeElement?.getAttribute('data-type') || document.activeElement?.role || 'unknown');
+          }}>
+          Focus via DatePicker ref
+        </button>
+        <button
+          type="button"
+          data-testid="focus-dateinput-ref"
+          style={{padding: '8px 12px', cursor: 'pointer'}}
+          onClick={() => {
+            dateInputRef.current?.focus();
+            setActive(document.activeElement?.getAttribute('data-type') || document.activeElement?.role || 'unknown');
+          }}>
+          Focus via DateInput ref
+        </button>
+      </div>
+
+      <p data-testid="focused-segment" style={{marginTop: 16}}>
+        Focused segment: <strong>{active}</strong>
+      </p>
+    </div>
+  );
+};

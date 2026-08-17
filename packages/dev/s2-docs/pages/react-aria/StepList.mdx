@@ -1,0 +1,90 @@
+import {Layout} from '../../src/Layout';
+export default Layout;
+
+import docs from 'docs:react-aria-components';
+
+export const tags = ['navigation', 'wizard', 'stepper'];
+export const description = 'A linear, accessible stepper for checkout, onboarding, and multi-step forms.';
+
+# StepList
+
+<PageDescription>{docs.exports.StepList.description}</PageDescription>
+
+```tsx render docs={docs.exports.StepList} links={docs.links} props={['isDisabled', 'isReadOnly']} type="vanilla"
+"use client";
+import {StepList, Step} from 'react-aria-components/StepList';
+
+<StepList aria-label="Checkout" defaultLastCompletedStep="account"/* PROPS */>
+  <Step id="account">Account</Step>
+  <Step id="shipping">Shipping</Step>
+  <Step id="payment">Payment</Step>
+</StepList>
+```
+
+## Content
+
+`StepList` follows the [Collection Components API](collections?component=StepList), accepting both static and dynamic collections. Use `id` on each `Step` (this maps to v3 `Item` `key`).
+
+```tsx render
+"use client";
+import {StepList, Step} from 'react-aria-components/StepList';
+
+const steps = [
+  {id: 'account', name: 'Account'},
+  {id: 'shipping', name: 'Shipping'},
+  {id: 'payment', name: 'Payment'}
+];
+
+<StepList aria-label="Checkout" items={steps} defaultLastCompletedStep="account">
+  {item => <Step id={item.id}>{item.name}</Step>}
+</StepList>
+```
+
+## Selection and completion
+
+A step is always selected. The default is the first incomplete, non-disabled step. Users can return to completed steps, and can advance only to the first incomplete step. Selecting a later step advances `lastCompletedStep` to the previous key.
+
+```tsx render
+"use client";
+import type {Key} from 'react-aria-components/StepList';
+import {StepList, Step} from 'react-aria-components/StepList';
+import {useState} from 'react';
+
+function Example() {
+  let [selectedKey, setSelectedKey] = useState<Key>('shipping');
+  let [lastCompletedStep, setLastCompletedStep] = useState<Key | null>('account');
+
+  return (
+    <StepList
+      aria-label="Checkout"
+      selectedKey={selectedKey}
+      onSelectionChange={setSelectedKey}
+      lastCompletedStep={lastCompletedStep}
+      onLastCompletedStepChange={setLastCompletedStep}>
+      <Step id="account">Account</Step>
+      <Step id="shipping">Shipping</Step>
+      <Step id="payment">Payment</Step>
+    </StepList>
+  );
+}
+```
+
+## Styling
+
+`Step` exposes `data-selected`, `data-completed`, `data-disabled`, and `data-readonly`, plus matching render props (`isSelected`, `isCompleted`, `isDisabled`, `isReadOnly`).
+
+## API
+
+```tsx links={{StepList: '#steplist', Step: '#step'}}
+<StepList>
+  <Step />
+</StepList>
+```
+
+### StepList
+
+<PropTable component={docs.exports.StepList} links={docs.links} />
+
+### Step
+
+<PropTable component={docs.exports.Step} links={docs.links} />

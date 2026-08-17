@@ -2,5 +2,8 @@
   "colorSwatchPicker": "Krāsu paraugi",
   "dropzoneLabel": "DropZone",
   "selectPlaceholder": "Izvēlēties vienumu",
-  "tableResizer": "Izmēra mainītājs"
+  "tableResizer": "Izmēra mainītājs",
+  "steplist.current": "Pašreizējais: ",
+  "steplist.completed": "Pabeigts: ",
+  "steplist.notCompleted": "Nav pabeigts: "
 }

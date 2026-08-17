@@ -2,5 +2,8 @@
   "colorSwatchPicker": "Uzorci boja",
   "dropzoneLabel": "Zona spuštanja",
   "selectPlaceholder": "Odaberite stavku",
-  "tableResizer": "Promjena veličine"
+  "tableResizer": "Promjena veličine",
+  "steplist.current": "Trenutno: ",
+  "steplist.completed": "Završeno: ",
+  "steplist.notCompleted": "Nije završeno: "
 }

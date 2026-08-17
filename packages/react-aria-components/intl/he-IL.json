@@ -2,5 +2,8 @@
   "colorSwatchPicker": "דוגמיות צבע",
   "dropzoneLabel": "DropZone",
   "selectPlaceholder": "בחר פריט",
-  "tableResizer": "שינוי גודל"
+  "tableResizer": "שינוי גודל",
+  "steplist.current": "נוכחי: ",
+  "steplist.completed": "הושלם:  ",
+  "steplist.notCompleted": "לא הושלם:  "
 }

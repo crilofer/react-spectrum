@@ -2,5 +2,8 @@
   "colorSwatchPicker": "Renk örnekleri",
   "dropzoneLabel": "Bırakma Bölgesi",
   "selectPlaceholder": "Bir öğe seçin",
-  "tableResizer": "Yeniden boyutlandırıcı"
+  "tableResizer": "Yeniden boyutlandırıcı",
+  "steplist.current": "Güncel: ",
+  "steplist.completed": "Tamamlanmış: ",
+  "steplist.notCompleted": "Tamamlanmamıs: "
 }

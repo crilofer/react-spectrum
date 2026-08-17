@@ -2,5 +2,8 @@
   "colorSwatchPicker": "Fargekart",
   "dropzoneLabel": "Droppsone",
   "selectPlaceholder": "Velg et element",
-  "tableResizer": "Størrelsesendrer"
+  "tableResizer": "Størrelsesendrer",
+  "steplist.current": "Nåværende: ",
+  "steplist.completed": "Fullført: ",
+  "steplist.notCompleted": "Ikke fullført: "
 }

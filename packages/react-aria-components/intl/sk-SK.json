@@ -2,5 +2,8 @@
   "colorSwatchPicker": "Vzorkovníky farieb",
   "dropzoneLabel": "DropZone",
   "selectPlaceholder": "Vyberte položku",
-  "tableResizer": "Nástroj na zmenu veľkosti"
+  "tableResizer": "Nástroj na zmenu veľkosti",
+  "steplist.current": "Aktuálne: ",
+  "steplist.completed": "Dokončené: ",
+  "steplist.notCompleted": "Nedokončené: "
 }

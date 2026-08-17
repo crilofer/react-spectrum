@@ -2,5 +2,8 @@
   "colorSwatchPicker": "kleurstalen",
   "dropzoneLabel": "DropZone",
   "selectPlaceholder": "Selecteer een item",
-  "tableResizer": "Resizer"
+  "tableResizer": "Resizer",
+  "steplist.current": "Actueel: ",
+  "steplist.completed": "Voltooid: ",
+  "steplist.notCompleted": "Niet voltooid: "
 }

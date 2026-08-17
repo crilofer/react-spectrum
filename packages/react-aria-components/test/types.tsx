@@ -81,6 +81,8 @@ motion(RAC.Slider);
 motion(RAC.SliderOutput);
 motion(RAC.SliderTrack);
 motion(RAC.SliderThumb);
+motion(RAC.StepList);
+motion(RAC.Step);
 motion(RAC.Switch);
 motion(RAC.Table);
 motion(RAC.Row);

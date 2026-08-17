@@ -124,6 +124,7 @@ export {Slider, SliderContext} from '../src/Slider';
 export {Skeleton, useIsSkeleton} from '../src/Skeleton';
 export {SkeletonCollection} from '../src/SkeletonCollection';
 export {StatusLight, StatusLightContext} from '../src/StatusLight';
+export {StepList, Step, StepListContext} from '../src/StepList';
 export {Switch, SwitchContext} from '../src/Switch';
 export {
   TableView,
@@ -262,6 +263,7 @@ export type {RangeSliderProps} from '../src/RangeSlider';
 export type {SkeletonProps} from '../src/Skeleton';
 export type {SkeletonCollectionProps} from '../src/SkeletonCollection';
 export type {StatusLightProps} from '../src/StatusLight';
+export type {StepListProps, StepProps} from '../src/StepList';
 export type {SwitchProps} from '../src/Switch';
 export type {
   TableViewProps,

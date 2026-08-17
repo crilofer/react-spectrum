@@ -2,5 +2,8 @@
   "colorSwatchPicker": "Próbki kolorów",
   "dropzoneLabel": "Strefa upuszczania",
   "selectPlaceholder": "Wybierz element",
-  "tableResizer": "Zmiana rozmiaru"
+  "tableResizer": "Zmiana rozmiaru",
+  "steplist.current": "Aktualny: ",
+  "steplist.completed": "Ukończone: ",
+  "steplist.notCompleted": "Nie ukończone: "
 }

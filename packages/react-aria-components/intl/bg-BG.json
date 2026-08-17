@@ -2,5 +2,8 @@
   "colorSwatchPicker": "Цветови мостри",
   "dropzoneLabel": "DropZone",
   "selectPlaceholder": "Изберете предмет",
-  "tableResizer": "Преоразмерител"
+  "tableResizer": "Преоразмерител",
+  "steplist.current": "Текущ: ",
+  "steplist.completed": "Завършено: ",
+  "steplist.notCompleted": "Незавършено: "
 }

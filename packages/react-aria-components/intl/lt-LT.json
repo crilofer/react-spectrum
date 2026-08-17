@@ -2,5 +2,8 @@
   "colorSwatchPicker": "Spalvų pavyzdžiai",
   "dropzoneLabel": "„DropZone“",
   "selectPlaceholder": "Pasirinkite elementą",
-  "tableResizer": "Dydžio keitiklis"
+  "tableResizer": "Dydžio keitiklis",
+  "steplist.current": "Dabartinis: ",
+  "steplist.completed": "Užbaigta: ",
+  "steplist.notCompleted": "Ne pabaigtas: "
 }

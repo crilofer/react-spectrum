@@ -2,5 +2,8 @@
   "colorSwatchPicker": "カラースウォッチ",
   "dropzoneLabel": "ドロップゾーン",
   "selectPlaceholder": "項目を選択",
-  "tableResizer": "サイズ変更ツール"
+  "tableResizer": "サイズ変更ツール",
+  "steplist.current": "現在 :",
+  "steplist.completed": "完了 :",
+  "steplist.notCompleted": "未完了 :"
 }

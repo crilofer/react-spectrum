@@ -2,5 +2,8 @@
   "colorSwatchPicker": "Színtárak",
   "dropzoneLabel": "DropZone",
   "selectPlaceholder": "Válasszon ki egy elemet",
-  "tableResizer": "Átméretező"
+  "tableResizer": "Átméretező",
+  "steplist.current": "Jelenlegi: ",
+  "steplist.completed": "Elkészült: ",
+  "steplist.notCompleted": "Nincs kész: "
 }

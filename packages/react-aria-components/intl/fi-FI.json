@@ -2,5 +2,8 @@
   "colorSwatchPicker": "Värimallit",
   "dropzoneLabel": "DropZone",
   "selectPlaceholder": "Valitse kohde",
-  "tableResizer": "Koon muuttaja"
+  "tableResizer": "Koon muuttaja",
+  "steplist.current": "Nykyinen: ",
+  "steplist.completed": "Valmistunut: ",
+  "steplist.notCompleted": "Ei valmis: "
 }

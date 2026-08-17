@@ -2,5 +2,8 @@
   "colorSwatchPicker": "Χρωματικά δείγματα",
   "dropzoneLabel": "DropZone",
   "selectPlaceholder": "Επιλέξτε ένα αντικείμενο",
-  "tableResizer": "Αλλαγή μεγέθους"
+  "tableResizer": "Αλλαγή μεγέθους",
+  "steplist.current": "Τρέχον:  ",
+  "steplist.completed": "Ολοκληρώθηκε:  ",
+  "steplist.notCompleted": "Μη ολοκληρωμένο:  "
 }

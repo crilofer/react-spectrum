@@ -2,5 +2,8 @@
   "colorSwatchPicker": "Зразки кольорів",
   "dropzoneLabel": "DropZone",
   "selectPlaceholder": "Виберіть елемент",
-  "tableResizer": "Засіб змінення розміру"
+  "tableResizer": "Засіб змінення розміру",
+  "steplist.current": "Поточний: ",
+  "steplist.completed": "Завершено: ",
+  "steplist.notCompleted": "Не завершено: "
 }

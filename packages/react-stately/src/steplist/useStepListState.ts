@@ -10,7 +10,14 @@
  * governing permissions and limitations under the License.
  */
 
-import {Collection, CollectionBase, Key, Node, SingleSelection} from '@react-types/shared';
+import {
+  Collection,
+  CollectionBase,
+  CollectionStateBase,
+  Key,
+  Node,
+  SingleSelection
+} from '@react-types/shared';
 import {SingleSelectListState, useSingleSelectListState} from '../list/useSingleSelectListState';
 import {useCallback, useEffect, useMemo} from 'react';
 import {useControlledState} from '../utils/useControlledState';
@@ -31,6 +38,9 @@ export interface StepListProps<T>
   onSelectionChange?: (key: Key) => void;
 }
 
+export interface StepListStateOptions<T>
+  extends Omit<StepListProps<T>, 'children'>, CollectionStateBase<T> {}
+
 export interface StepListState<T> extends SingleSelectListState<T> {
   readonly lastCompletedStep?: Key;
   setLastCompletedStep(key: Key): void;
@@ -38,7 +48,9 @@ export interface StepListState<T> extends SingleSelectListState<T> {
   isSelectable(key: Key): boolean;
 }
 
-export function useStepListState<T extends object>(props: StepListProps<T>): StepListState<T> {
+export function useStepListState<T extends object>(
+  props: StepListStateOptions<T>
+): StepListState<T> {
   let state = useSingleSelectListState<T>({
     ...props,
     onSelectionChange: props.onSelectionChange

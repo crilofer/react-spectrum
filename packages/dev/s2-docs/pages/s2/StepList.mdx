@@ -1,0 +1,49 @@
+import {Layout} from '../../src/Layout';
+export default Layout;
+
+import docs from 'docs:@react-spectrum/s2';
+
+export const tags = ['navigation', 'wizard', 'stepper'];
+export const description = 'A Spectrum 2 stepper for checkout, onboarding, and multi-step forms.';
+
+# StepList
+
+<PageDescription>{docs.exports.StepList.description}</PageDescription>
+
+```tsx render docs={docs.exports.StepList} links={docs.links} props={['size', 'orientation', 'isEmphasized', 'isDisabled', 'isReadOnly']} initialProps={{}} type="s2"
+"use client";
+import {StepList, Step} from '@react-spectrum/s2/StepList';
+
+<StepList aria-label="Checkout" defaultLastCompletedStep="account"/* PROPS */>
+  <Step id="account">Account</Step>
+  <Step id="shipping">Shipping</Step>
+  <Step id="payment">Payment</Step>
+</StepList>
+```
+
+## Content
+
+`StepList` follows the [Collection Components API](collections?component=StepList). Use `id` on each `Step`.
+
+```tsx render
+"use client";
+import {StepList, Step} from '@react-spectrum/s2/StepList';
+
+const steps = [
+  {id: 'account', name: 'Account'},
+  {id: 'shipping', name: 'Shipping'},
+  {id: 'payment', name: 'Payment'}
+];
+
+<StepList aria-label="Checkout" items={steps} defaultLastCompletedStep="account">
+  {item => <Step id={item.id}>{item.name}</Step>}
+</StepList>
+```
+
+## API
+
+<PropTable component={docs.exports.StepList} links={docs.links} />
+
+### Step
+
+<PropTable component={docs.exports.Step} links={docs.links} />

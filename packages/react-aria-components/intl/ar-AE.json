@@ -2,5 +2,8 @@
   "colorSwatchPicker": "تغييرات الألوان",
   "dropzoneLabel": "DropZone",
   "selectPlaceholder": "حدد عنصرًا",
-  "tableResizer": "أداة تغيير الحجم"
+  "tableResizer": "أداة تغيير الحجم",
+  "steplist.current": "الحالي: ",
+  "steplist.completed": "مكتمل: ",
+  "steplist.notCompleted": "غير مكتمل: "
 }
